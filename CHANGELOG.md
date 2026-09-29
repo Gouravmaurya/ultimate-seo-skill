@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-09-29
+
+Ultimate SEO fork of claude-seo 2.4.0 by AgriciDaniel.
+
+### Added
+
+- `seo-codebase` sub-skill (`/seo codebase [path] [audit|fix|verify]`): repo-first
+  SEO. Profiles the project (framework, rendering, hosting quotas, routes, real
+  dynamic page counts, index gating, crawl cost), writes a scored audit and an
+  action plan, stops for approval, then implements fixes and verifies them
+  against server HTML. References: `page-rules.md` (page standard, verified
+  2026-09-29) and `framework-recipes.md` (Next.js App/Pages, Astro, Nuxt,
+  SvelteKit, Remix/React Router, Gatsby, WordPress, Hugo/Eleventy/Jekyll, SPAs).
+- `seo-indexing` sub-skill (`/seo indexing [plan|diagnose|implement]`): bulk
+  indexing from a real ~5,000-page rollout. Index gate shared by page and
+  sitemap, crawl-cost controls, sitemap chunking, internal-link discovery,
+  staged rollout, Search Console / Bing / IndexNow submission, page lifecycle,
+  and a fix table for every Search Console page-indexing reason.
+- `seo-aeo` sub-skill (`/seo aeo`): answer engine optimization with
+  evidence-graded recommendations (A platform docs / B peer-reviewed / C
+  industry), constrained by Google's AI optimization guide (2026-07-10), and
+  measurement via the Search Console generative AI report and Bing AI
+  Performance. Evidence register in `references/evidence.md`.
+- Orchestrator: codebase mode when no URL is given; full audits run AEO
+  checks on top landing pages and an indexing plan for 500+ generated URLs.
+
+### Changed
+
+- Plugin renamed `ultimate-seo` (marketplace `gouravmaurya-ultimate-seo`);
+  installers point to `Gouravmaurya/ultimate-seo-skill` at tag `v2.5.0`.
+
 ## [2.4.0] - 2026-09-24
 
 ### Added

@@ -7,15 +7,15 @@ set -euo pipefail
 main() {
     SKILL_DIR="${HOME}/.claude/skills/seo"
     AGENT_DIR="${HOME}/.claude/agents"
-    REPO_URL="https://github.com/AgriciDaniel/claude-seo"
+    REPO_URL="https://github.com/Gouravmaurya/ultimate-seo-skill"
     # Pin to a specific release tag to prevent silent updates from main.
     # This default MUST be bumped on every release. CI guard
     # (tests/test_manifest_consistency.py) enforces this matches plugin.json.
     # Override: CLAUDE_SEO_TAG=main bash install.sh
-    REPO_TAG="${CLAUDE_SEO_TAG:-v2.4.0}"
+    REPO_TAG="${CLAUDE_SEO_TAG:-v2.5.0}"
 
     echo "════════════════════════════════════════"
-    echo "║   Claude SEO - Installer             ║"
+    echo "║   Ultimate SEO - Installer           ║"
     echo "║   Claude Code SEO Skill              ║"
     echo "════════════════════════════════════════"
     echo ""

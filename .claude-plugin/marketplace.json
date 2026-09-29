@@ -1,23 +1,23 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "agricidaniel-claude-seo",
+  "name": "gouravmaurya-ultimate-seo",
   "owner": {
-    "name": "AgriciDaniel"
+    "name": "Gouravmaurya"
   },
   "metadata": {
-    "description": "Comprehensive SEO analysis plugin for Claude Code. 26 sub-skills and 19 sub-agents, plus 9 optional MCP extensions (Matomo, DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse). v2.4.0 adds /seo agentic for agent readiness (Lighthouse Agentic Browsing, WebMCP, AI agent access), keeps installer secrets off the command line, and fixes #312, #314 and #317."
+    "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 29 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.5.0 adds /seo codebase (repo-first fixes), /seo indexing (bulk indexing at scale) and /seo aeo (evidence-graded answer engine optimization)."
   },
   "plugins": [
     {
-      "name": "claude-seo",
+      "name": "ultimate-seo",
       "source": "./",
-      "description": "Comprehensive SEO analysis plugin for Claude Code. 26 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.4.0 adds /seo agentic for agent readiness (Lighthouse Agentic Browsing, WebMCP, AI agent access), keeps installer secrets off the command line, and fixes #312, #314 and #317.",
+      "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 29 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.5.0 adds /seo codebase (repo-first fixes), /seo indexing (bulk indexing at scale) and /seo aeo (evidence-graded answer engine optimization).",
       "author": {
-        "name": "AgriciDaniel",
-        "url": "https://github.com/AgriciDaniel"
+        "name": "Gouravmaurya",
+        "url": "https://github.com/Gouravmaurya"
       },
       "category": "marketing",
-      "homepage": "https://claude-seo.md",
+      "homepage": "https://github.com/Gouravmaurya/ultimate-seo-skill",
       "keywords": [
         "seo",
         "technical-seo",

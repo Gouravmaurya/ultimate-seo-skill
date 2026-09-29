@@ -199,6 +199,63 @@ Agent readiness: how well AI agents that browse and act for people can read and 
 
 ---
 
+### `/seo codebase [path] [audit|fix|verify]`
+
+Repo-first SEO. Runs inside a project (no URL needed): analyzes the source code, scores it, asks for approval, then implements the fixes with the framework's own patterns.
+
+**Examples:**
+```
+/seo codebase
+/seo codebase apps/web audit
+/seo codebase fix
+```
+
+**What it does:**
+- Profiles the project: framework and rendering model, hosting quotas, route inventory with real dynamic page counts, existing metadata/schema/sitemap/robots, index gating, crawl cost per hit, internal linking
+- Writes `docs/seo/PROJECT-SEO-PROFILE.md`, `SEO-AUDIT-YYYY-MM-DD.md` (scored) and `ACTION-PLAN.md`
+- Stops for approval, then implements with recipes for Next.js (App/Pages), Astro, Nuxt, SvelteKit, Remix/React Router, Gatsby, WordPress, Hugo/Eleventy/Jekyll, and SPAs
+- Verifies against real server HTML, status codes, sitemaps and robots groups, not just the code
+
+---
+
+### `/seo indexing [plan|diagnose|implement] [url or path]`
+
+Get hundreds to millions of generated pages crawled and indexed, and keep crawling affordable.
+
+**Examples:**
+```
+/seo indexing plan https://example.com
+/seo indexing diagnose
+/seo indexing implement
+```
+
+**What it covers:**
+- One index gate shared by the page's robots meta and the sitemap query (no "submitted but noindex")
+- Crawl cost: cached renders, no per-request APIs, DB writes or paid calls on bot hits, image-optimizer quotas, scraper blocking
+- Sitemap chunking and indexes, accurate `lastmod`, internal-link discovery, staged rollout by segment
+- Submission: Search Console, Bing Webmaster Tools, IndexNow (Google Indexing API only for JobPosting/BroadcastEvent)
+- Diagnosis of every Search Console page-indexing reason, with fixes
+
+---
+
+### `/seo aeo <url or path>`
+
+Answer Engine Optimization: whether pages give answers that AI Overviews, AI Mode, ChatGPT, Claude, Perplexity and Copilot can find, trust, quote and attribute.
+
+**Examples:**
+```
+/seo aeo https://example.com/guide
+/seo aeo src/app/blog
+```
+
+**What it analyzes:**
+- Eligibility per platform (index, snippet directives, the search bot that decides citability)
+- Answer-first structure, question coverage, citable evidence (quotes, statistics, sources), trust and entity clarity, freshness
+- Every recommendation is graded A (platform docs) / B (peer-reviewed) / C (industry study) and must fit Google's AI optimization guide
+- Measurement with the Search Console generative AI report, Bing AI Performance, and a prompt panel
+
+---
+
 ### `/seo images <url>`
 
 Image optimization analysis. Subcommands: `serp <keyword>` (image SERP / visual-search analysis), `optimize <path>` (local file optimization + IPTC AI labeling).
@@ -769,6 +826,9 @@ Multi-page Lighthouse audit via Unlighthouse (extension, MIT, no API quota). **P
 | `/seo images <url>` | Image optimization |
 | `/seo geo <url>` | AI search optimization (GEO) |
 | `/seo agentic <url>` | Agent readiness (Lighthouse Agentic Browsing, AI agent access, WebMCP) |
+| `/seo codebase [path]` | Repo-first SEO: analyze the code, then implement fixes |
+| `/seo indexing [plan\|diagnose\|implement]` | Bulk indexing at scale, crawl cost, Search Console reasons |
+| `/seo aeo <url or path>` | Answer Engine Optimization (evidence-graded) |
 | `/seo local <url>` | Local SEO (GBP, citations, reviews) |
 | `/seo maps [command]` | Maps intelligence (geo-grid, GBP audit, competitors) |
 | `/seo backlinks <url>` | Backlink profile analysis |

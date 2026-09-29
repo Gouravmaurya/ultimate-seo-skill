@@ -1,121 +1,68 @@
-![Claude SEO cover: a Claude Code command palette with /seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
+# Ultimate SEO Skill for Claude Code
 
-# Claude SEO: SEO Skill for Claude Code
+**SEO, AEO and GEO for Claude Code: audit any live site, or open any project and let Claude analyze the code, then fix it.** 29 sub-skills and 19 specialist agents cover technical SEO, content quality (E-E-A-T), Schema.org, sitemaps, Core Web Vitals, AI search (GEO), answer engines (AEO), local, e-commerce, international SEO, and getting thousands of generated pages indexed.
 
-**Claude SEO is an open-source SEO analysis plugin for [Claude Code](https://claude.ai/claude-code).** It runs 26 sub-skills and 19 specialist agents in parallel across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized action plan with testable recommendations grounded in primary-source guidance from Google.
+Built on [claude-seo](https://github.com/AgriciDaniel/claude-seo) v2.4.0 by AgriciDaniel (MIT), which provides the URL-based audit engine, 19 agents, and Python toolchain. This fork adds three sub-skills from a real production rollout (a Next.js real-estate site pushing ~5,000 listing pages into Google), plus a September 2026 research pass over primary sources.
 
-[![CI](https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml/badge.svg)](https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml)
-[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/claude-code)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/AgriciDaniel/claude-seo)](https://github.com/AgriciDaniel/claude-seo/releases)
-[![Tests](https://img.shields.io/badge/tests-410%20passing-brightgreen)](tests/)
-[![Community](https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple)](https://www.skool.com/ai-marketing-hub-pro)
+[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/claude-code)
 
-> **Two versions of this skill.**
-> - 🌐 **Public open-source** → [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo): MIT, public releases, no membership. Use this if you want stable + downloadable.
-> - 🔒 **Community private mirror** → [`AI-Marketing-Hub/claude-seo`](https://github.com/AI-Marketing-Hub/claude-seo): early access to upcoming features and direct collaboration with the [AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro) community. Requires membership.
+## What this fork adds
 
-### Why Claude SEO
+| Command | What it does | Why it matters |
+|---|---|---|
+| `/seo codebase` | Runs **inside your project**. Profiles the framework, rendering, routes and real dynamic page counts, scores the code, asks for approval, then **implements the fixes** with framework-native recipes (Next.js App/Pages, Astro, Nuxt, SvelteKit, Remix/React Router, Gatsby, WordPress, Hugo/Eleventy/Jekyll, SPAs) and verifies against real server HTML. | URL audits tell you what's wrong; this one changes the code. |
+| `/seo indexing` | Gets **hundreds to millions of pages indexed**: one index gate shared by page and sitemap, crawl cost (cached renders, no paid calls on bot hits, image quotas), sitemap chunking, internal-link discovery, staged rollout, Search Console / Bing / IndexNow submission, lifecycle of sold/removed pages, and a fix for every Search Console "not indexed" reason. | Sitemaps get pages *discovered*, not *indexed*. This covers the rest, honestly, including why the Google Indexing API is off-limits for normal pages. |
+| `/seo aeo` | **Answer Engine Optimization** across AI Overviews, AI Mode, ChatGPT, Claude, Perplexity and Copilot: eligibility per platform, answer-first structure, question coverage, citable evidence, trust, freshness, and measurement (Search Console generative AI report, Bing AI Performance, prompt panel). | Every recommendation is **evidence-graded** (A platform docs, B peer-reviewed, C industry study) and must fit Google's AI optimization guide. No hacks. |
 
-- **AI-search first.** Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide). Question-based citability scoring, primary-source evidence on llms.txt, IPTC `TrainedAlgorithmicMedia` for AI-generated product images, agent-friendly page checks per [web.dev](https://web.dev/), and `/seo agentic` for agent readiness scored the way Lighthouse's Agentic Browsing category counts it.
-- **Parallel execution.** Full site audits spawn up to 17 specialist agents simultaneously. Site-level audits complete in minutes rather than hours.
-- **Falsifiable, not promotional.** Every recommendation carries the first-principle observation it rests on, its dependency relationships, an explicit "how would we know this failed?" check, and a leading indicator. See [Methodology](#methodology).
+Plus: the `/seo` orchestrator picks **codebase mode** automatically when you're in a project with no URL, full audits include AEO checks on top landing pages, and sites with 500+ generated URLs get an indexing plan.
 
-### Real results
+## Quick install
 
-![Google Search Console clicks and impressions for a three-month-old site climbing from launch to steady organic growth between 23 March and 12 June 2026](assets/growth-3-months.png)
-
-Google Search Console for a site started 23 March 2026 and run on this workflow: total clicks and impressions across its first three months, through 12 June 2026.
-
-> Using Codex instead of Claude Code? Use [Codex SEO](https://github.com/AgriciDaniel/codex-seo), the Codex-first port with TOML agents, plugin packaging, deterministic runners, and the same SEO workflow surface.
-
-## Who this is for
-
-- **SEO agencies running 5+ client sites.** Replace quarterly deep audits with weekly automated runs. Same team capacity, 4× audit cadence, every recommendation comes with a falsifiability check the client can verify.
-- **In-house SEO leads at SaaS / publisher / e-commerce companies.** Second-pair-of-eyes before executive reviews. Catches what GSC and Lighthouse hide: schema deprecation, AI-citability gaps, expired-domain heritage risk, parasite-SEO exposure, machine-translation drift.
-- **Freelance SEO consultants.** Anchor day-one client scope with a 15-minute audit and a real 0-100 score. Win the engagement with concrete proof of value before you spend an hour writing the proposal.
-
-![Claude SEO /seo command demo in Claude Code terminal](screenshots/seo-command-demo.gif)
-
-Run a full audit and watch parallel agents fan out across the site:
-
-![Claude SEO /seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
-
-[Watch the full demo on YouTube](https://www.youtube.com/watch?v=COMnNlUakQk)
-
-## Table of Contents
-
-- [Who this is for](#who-this-is-for)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Commands](#commands)
-- [Features](#features)
-- [Compared to manual / agency / commercial tools](#compared-to-manual--agency--commercial-tools)
-- [Use cases](#use-cases)
-- [Sample Output](#sample-output)
-- [Architecture](#architecture)
-- [Methodology](#methodology)
-- [What's New in v2](#whats-new-in-v2)
-- [Limitations](#limitations)
-- [Requirements](#requirements)
-- [Uninstall](#uninstall)
-- [Extensions](#extensions)
-- [Ecosystem](#ecosystem)
-- [Documentation](#documentation)
-- [FAQ](#faq)
-- [Community Contributors](#community-contributors)
-- [License](#license)
-- [Contributing](#contributing)
-- [Author](#author)
-
-## Installation
-
-> ℹ️ **Which version are you installing?**
->
-> - **Public open-source (default).** The commands below install from [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo) — MIT, public releases, no membership required.
-> - **AI Marketing Hub Pro member?** Install the community version with early access instead: swap `AgriciDaniel/claude-seo` for `AI-Marketing-Hub/claude-seo` and the plugin slug `claude-seo@agricidaniel-claude-seo` for `claude-seo@ai-marketing-hub-claude-seo`. Requires `gh auth login` (or PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` 404s, DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
-
-### Plugin Install (Claude Code 1.0.33+)
-
-The fastest path. One-time marketplace add, then plugin install:
+### Plugin (Claude Code 1.0.33+)
 
 ```bash
-/plugin marketplace add AgriciDaniel/claude-seo
-/plugin install claude-seo@agricidaniel-claude-seo
+/plugin marketplace add Gouravmaurya/ultimate-seo-skill
+/plugin install ultimate-seo@gouravmaurya-ultimate-seo
 /seo setup
 ```
 
-The explicit setup step creates an isolated Python environment in Claude's
-persistent plugin data and installs Playwright Chromium. Check it at any time
-with `/seo doctor`. No global Python packages or PATH shims are created.
-
-### Manual Install (Unix / macOS / Linux)
+### Manual (macOS / Linux)
 
 ```bash
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-bash claude-seo/install.sh
+git clone --depth 1 https://github.com/Gouravmaurya/ultimate-seo-skill.git
+bash ultimate-seo-skill/install.sh
 ```
 
-<details>
-<summary>One-liner (curl, review then run)</summary>
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh > install.sh
-cat install.sh        # review before running
-bash install.sh
-rm install.sh
-```
-
-</details>
-
-### Windows (PowerShell)
+### Manual (Windows PowerShell)
 
 ```powershell
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-powershell -ExecutionPolicy Bypass -File claude-seo\install.ps1
+git clone --depth 1 https://github.com/Gouravmaurya/ultimate-seo-skill.git
+powershell -ExecutionPolicy Bypass -File ultimate-seo-skill\install.ps1
 ```
 
-> **Why `git clone` instead of `irm | iex`?** Claude Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `claude-seo\install.ps1` before running it.
+`/seo setup` creates an isolated Python environment and installs Playwright Chromium for the URL-based tools. `/seo codebase` needs none of that: it works with Claude Code's own file tools.
+
+> If you already have upstream claude-seo installed, uninstall it first. Both install the `seo` skill and the same agent names.
+
+## Get great results: how to use it
+
+1. **Working on your own site's code?** Open the project in Claude Code and run `/seo codebase`. Answer its questions about the business (what you sell, to whom, where, the main conversion). Review `docs/seo/ACTION-PLAN.md`, then tell it which items to implement.
+2. **Have thousands of generated pages** (listings, products, locations)? Run `/seo indexing plan`. Fix the gate, crawl cost and internal links **before** submitting sitemaps, then roll out best segments first.
+3. **Want AI answers to cite you?** Run `/seo aeo` on your top landing pages, then set up the Search Console and Bing AI reports so you measure instead of guess.
+4. **Auditing a live site or a client?** `/seo audit https://example.com` runs the full parallel audit.
+5. **Re-run monthly.** Every skill reads its previous output in `docs/seo/` and audits only what changed.
+
+## Principles
+
+- **Evidence over folklore.** Facts are dated and sourced (Google Search Central, OpenAI, Anthropic, Microsoft, peer-reviewed research). Industry statistics are labeled as directional.
+- **Honest markup and claims.** No fake reviews, authors or statistics; schema matches visible content; copy matches what the product does.
+- **Cheap to crawl = affordable to index.** Scale without burning hosting, API or AI quotas.
+- **Stop for approval** before editing code.
+
+---
+
+*The documentation below is from upstream claude-seo and applies to this fork. Where it says `AgriciDaniel/claude-seo`, use `Gouravmaurya/ultimate-seo-skill` to install this version.*
 
 ## Quick Start
 

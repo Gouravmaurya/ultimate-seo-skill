@@ -6,7 +6,7 @@ argument-hint: "[command] [url]"
 license: MIT
 metadata:
   author: AgriciDaniel
-  version: "2.4.0"
+  version: "2.5.0"
   category: seo
 ---
 
@@ -25,7 +25,7 @@ directory because hosted marketplaces reject one. Repository users run
 with a bare Python interpreter.
 
 Comprehensive SEO analysis across all industries (SaaS, local services,
-e-commerce, publishers, agencies). Orchestrates 25 sub-skills (22 core + 1 framework
+e-commerce, publishers, agencies). Orchestrates 28 sub-skills (25 core + 1 framework
 integration + 2 extension mirrors) and 19 sub-agents. A separate optional Firecrawl
 extension is also installable (see "Optional Extensions" below).
 
@@ -34,6 +34,9 @@ extension is also installable (see "Optional Extensions" below).
 | Command | What it does |
 |---------|-------------|
 | `/seo audit <url>` | Full website audit with parallel subagent delegation |
+| `/seo codebase [path] [audit\|fix\|verify]` | Repo-first SEO: analyze the project's code, score it, then implement fixes with framework-native patterns |
+| `/seo indexing [plan\|diagnose\|implement] [url or path]` | Get hundreds to millions of pages indexed: gate/sitemap parity, crawl cost, rollout, IndexNow, Search Console reasons |
+| `/seo aeo <url or path>` | Answer Engine Optimization: answer-first structure, citable evidence, per-platform eligibility, AI visibility measurement |
 | `/seo page <url>` | Deep single-page analysis |
 | `/seo sitemap <url or generate>` | Analyze or generate XML sitemaps |
 | `/seo schema <url>` | Detect, validate, and generate Schema.org markup |
@@ -77,6 +80,12 @@ intentionally omits absolute paths and environment values. If any
 `"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run` command reports that setup is
 required, suggest `/seo setup` and do not improvise a `pip install`.
 
+## Mode Selection: URL or Codebase
+
+- **User gives a URL** → the URL-based flow below.
+- **User is inside a project and gives no URL** (or says "this project", "fix SEO in the code") → load `seo-codebase`. It profiles the repo, audits it using the other sub-skills' criteria, asks for approval, then implements fixes in the code.
+- **Both** → run `seo-codebase` and use the live URL to compare what production serves with what the code says.
+
 ## Orchestration Logic
 
 When the user invokes `/seo audit`, delegate to subagents in parallel:
@@ -92,6 +101,8 @@ When the user invokes `/seo audit`, delegate to subagents in parallel:
 10. If e-commerce detected, also spawn seo-ecommerce agent
 11. If drift baseline exists for this URL (`"${CLAUDE_PLUGIN_ROOT}/scripts/claude-seo" run drift_history.py <url>`), also spawn seo-drift agent
 12. Always include seo-sxo in full audits (search experience applies to all sites)
+12a. Always apply seo-aeo answer-layer checks to the top 5 landing pages in full audits (writes `findings/aeo.md`)
+12b. If a programmatic/dynamic page type with 500+ URLs is detected (sitemap size, URL patterns, or code), also run seo-indexing in `plan` mode (writes `findings/indexing.md`)
 13. Collect results and generate unified report with SEO Health Score (0-100)
 14. **Synthesize via the 10-principle framework** (see "Synthesis Methodology" below), walk PERCEIVE → ANALYZE → VALIDATE → ACT before bucketing findings into Critical / High / Medium / Low
 15. Create prioritized action plan with dependency sequencing + falsifiability per recommendation
@@ -181,6 +192,7 @@ Do NOT show the footer after:
 - `/seo hreflang` (quick validation, too small)
 - `/seo competitor-pages` (page generation step)
 - `/seo programmatic` (quick analysis)
+- `/seo codebase`, `/seo indexing`, `/seo aeo` (fork additions; no community footer)
 - `/seo dataforseo` (data fetching utility)
 - `/seo image-gen` (asset generation)
 - Context intake questions (before analysis starts)
@@ -222,8 +234,8 @@ Weighted aggregate of all categories:
 
 ## Sub-Skills
 
-This skill orchestrates 25 sub-skills (22 core + 1 framework integration + 2 extension
-mirrors). The orchestrator itself (`seo`) is the 26th in `skills/`, but does not
+This skill orchestrates 28 sub-skills (25 core + 1 framework integration + 2 extension
+mirrors). The orchestrator itself (`seo`) is the 29th in `skills/`, but does not
 orchestrate itself, so it is not enumerated below.
 
 1. **seo-audit** -- Full website audit with parallel delegation
@@ -251,6 +263,9 @@ orchestrate itself, so it is not enumerated below.
 23. **seo-image-gen** -- AI image generation for SEO assets via Gemini (extension mirror)
 24. **seo-flow** -- FLOW framework integration (Find -> Leverage -> Optimize -> Win, 41 AI prompts, CC BY 4.0)
 25. **seo-agentic** -- Agent readiness: Lighthouse Agentic Browsing, accessibility tree for agents, AI agent access policy, llms.txt, Markdown, ai-catalog.json, WebMCP
+26. **seo-codebase** -- Repo-first SEO: project profile, scored code audit, approval-gated fixes with framework recipes (Next.js, Astro, Nuxt, SvelteKit, Remix, Gatsby, WordPress, SSGs, SPAs)
+27. **seo-indexing** -- Bulk indexing: index-gate/sitemap parity, crawl cost, staged rollout, IndexNow, lifecycle, Search Console reason diagnosis
+28. **seo-aeo** -- Answer Engine Optimization with evidence-graded recommendations and AI visibility measurement
 
 ### Optional Extensions
 
