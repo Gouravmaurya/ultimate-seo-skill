@@ -6,7 +6,7 @@ argument-hint: "[command] [url]"
 license: MIT
 metadata:
   author: AgriciDaniel
-  version: "2.5.0"
+  version: "2.6.0"
   category: seo
 ---
 
@@ -25,7 +25,7 @@ directory because hosted marketplaces reject one. Repository users run
 with a bare Python interpreter.
 
 Comprehensive SEO analysis across all industries (SaaS, local services,
-e-commerce, publishers, agencies). Orchestrates 28 sub-skills (25 core + 1 framework
+e-commerce, publishers, agencies). Orchestrates 29 sub-skills (26 core + 1 framework
 integration + 2 extension mirrors) and 19 sub-agents. A separate optional Firecrawl
 extension is also installable (see "Optional Extensions" below).
 
@@ -33,6 +33,7 @@ extension is also installable (see "Optional Extensions" below).
 
 | Command | What it does |
 |---------|-------------|
+| `/seo pipeline [audit\|research\|improve\|status] [url]` | **Start here.** 3 steps with a report each: audit the project, research keywords and competitors, then implement and report what improved. Uses every sub-skill (or records why one was skipped) |
 | `/seo audit <url>` | Full website audit with parallel subagent delegation |
 | `/seo codebase [path] [audit\|fix\|verify]` | Repo-first SEO: analyze the project's code, score it, then implement fixes with framework-native patterns |
 | `/seo indexing [plan\|diagnose\|implement] [url or path]` | Get hundreds to millions of pages indexed: gate/sitemap parity, crawl cost, rollout, IndexNow, Search Console reasons |
@@ -81,6 +82,8 @@ intentionally omits absolute paths and environment values. If any
 required, suggest `/seo setup` and do not improvise a `pip install`.
 
 ## Mode Selection: URL or Codebase
+
+- **User wants SEO "done" end to end** ("do SEO for this project", "full SEO", "audit, research and fix") → load `seo-pipeline`. It runs Audit → Research → Improve, pausing after each step.
 
 - **User gives a URL** → the URL-based flow below.
 - **User is inside a project and gives no URL** (or says "this project", "fix SEO in the code") → load `seo-codebase`. It profiles the repo, audits it using the other sub-skills' criteria, asks for approval, then implements fixes in the code.
@@ -192,7 +195,7 @@ Do NOT show the footer after:
 - `/seo hreflang` (quick validation, too small)
 - `/seo competitor-pages` (page generation step)
 - `/seo programmatic` (quick analysis)
-- `/seo codebase`, `/seo indexing`, `/seo aeo` (fork additions; no community footer)
+- `/seo codebase`, `/seo indexing`, `/seo aeo`, `/seo pipeline` (fork additions; no community footer)
 - `/seo dataforseo` (data fetching utility)
 - `/seo image-gen` (asset generation)
 - Context intake questions (before analysis starts)
@@ -234,8 +237,8 @@ Weighted aggregate of all categories:
 
 ## Sub-Skills
 
-This skill orchestrates 28 sub-skills (25 core + 1 framework integration + 2 extension
-mirrors). The orchestrator itself (`seo`) is the 29th in `skills/`, but does not
+This skill orchestrates 29 sub-skills (26 core + 1 framework integration + 2 extension
+mirrors). The orchestrator itself (`seo`) is the 30th in `skills/`, but does not
 orchestrate itself, so it is not enumerated below.
 
 1. **seo-audit** -- Full website audit with parallel delegation
@@ -266,6 +269,7 @@ orchestrate itself, so it is not enumerated below.
 26. **seo-codebase** -- Repo-first SEO: project profile, scored code audit, approval-gated fixes with framework recipes (Next.js, Astro, Nuxt, SvelteKit, Remix, Gatsby, WordPress, SSGs, SPAs)
 27. **seo-indexing** -- Bulk indexing: index-gate/sitemap parity, crawl cost, staged rollout, IndexNow, lifecycle, Search Console reason diagnosis
 28. **seo-aeo** -- Answer Engine Optimization with evidence-graded recommendations and AI visibility measurement
+29. **seo-pipeline** -- 3-step pipeline (Audit → Research → Improve) with a report per step, before/after scores, and a skill-coverage table
 
 ### Optional Extensions
 

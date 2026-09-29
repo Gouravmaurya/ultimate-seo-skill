@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-09-29
+
+### Added
+
+- `seo-pipeline` sub-skill (`/seo pipeline [audit|research|improve|status]`):
+  a 3-step flow with a report per step. **Audit** profiles the project and
+  live site, scores every area and records a baseline (`01-AUDIT-REPORT.md`).
+  **Research** covers keywords from Search Console, keyword tools or labeled
+  estimates, SERP competitors, content and quality gaps, an AI answer snapshot
+  and a keyword-to-page map (`02-RESEARCH-REPORT.md`, `keyword-map.csv`).
+  **Improve** gets one approval, implements, verifies, re-scores and reports
+  before-to-after scores, every change, the owner's to-do list and a
+  measurement plan (`03-IMPROVEMENT-REPORT.md`). A coverage table assigns
+  every sub-skill and extension to a step; each report lists every skill as
+  ran or skipped with a reason. Resumes at the next missing step.
+
 ## [2.5.0] - 2026-09-29
 
 Ultimate SEO fork of claude-seo 2.4.0 by AgriciDaniel.

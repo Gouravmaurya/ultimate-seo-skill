@@ -5,13 +5,13 @@
     "name": "Gouravmaurya"
   },
   "metadata": {
-    "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 29 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.5.0 adds /seo codebase (repo-first fixes), /seo indexing (bulk indexing at scale) and /seo aeo (evidence-graded answer engine optimization)."
+    "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 30 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.6.0 adds /seo pipeline: audit, research (keywords + competitors), and improve, with a report for each step. Also /seo codebase, /seo indexing and /seo aeo."
   },
   "plugins": [
     {
       "name": "ultimate-seo",
       "source": "./",
-      "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 29 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.5.0 adds /seo codebase (repo-first fixes), /seo indexing (bulk indexing at scale) and /seo aeo (evidence-graded answer engine optimization).",
+      "description": "Ultimate SEO for Claude Code (based on claude-seo 2.4.0). 30 sub-skills and 19 sub-agents, plus 9 optional MCP extensions. v2.6.0 adds /seo pipeline: audit, research (keywords + competitors), and improve, with a report for each step. Also /seo codebase, /seo indexing and /seo aeo.",
       "author": {
         "name": "Gouravmaurya",
         "url": "https://github.com/Gouravmaurya"

@@ -15,7 +15,7 @@ argument-hint: "[url or path]"
 license: MIT
 metadata:
   author: Gouravmaurya
-  version: "2.5.0"
+  version: "2.6.0"
   category: seo
 ---
 

@@ -1,16 +1,29 @@
 # Ultimate SEO Skill for Claude Code
 
-**SEO, AEO and GEO for Claude Code: audit any live site, or open any project and let Claude analyze the code, then fix it.** 29 sub-skills and 19 specialist agents cover technical SEO, content quality (E-E-A-T), Schema.org, sitemaps, Core Web Vitals, AI search (GEO), answer engines (AEO), local, e-commerce, international SEO, and getting thousands of generated pages indexed.
+**SEO, AEO and GEO for Claude Code: audit any live site, or open any project and let Claude analyze the code, then fix it.** 30 sub-skills and 19 specialist agents cover technical SEO, content quality (E-E-A-T), Schema.org, sitemaps, Core Web Vitals, AI search (GEO), answer engines (AEO), local, e-commerce, international SEO, and getting thousands of generated pages indexed.
 
-Built on [claude-seo](https://github.com/AgriciDaniel/claude-seo) v2.4.0 by AgriciDaniel (MIT), which provides the URL-based audit engine, 19 agents, and Python toolchain. This fork adds three sub-skills from a real production rollout (a Next.js real-estate site pushing ~5,000 listing pages into Google), plus a September 2026 research pass over primary sources.
+Built on [claude-seo](https://github.com/AgriciDaniel/claude-seo) v2.4.0 by AgriciDaniel (MIT), which provides the URL-based audit engine, 19 agents, and Python toolchain. This fork adds a 3-step pipeline and three sub-skills from a real production rollout (a Next.js real-estate site pushing ~5,000 listing pages into Google), plus a September 2026 research pass over primary sources.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/claude-code)
+
+## Start here: `/seo pipeline`
+
+One command, three steps, a report after each. It pauses between steps so you can review.
+
+| Step | Command | What happens | Report |
+|---|---|---|---|
+| 1. Audit | `/seo pipeline audit` | Checks the project code and live site, scores every area, records baseline numbers | `docs/seo/01-AUDIT-REPORT.md` |
+| 2. Research | `/seo pipeline research` | Keywords (Search Console / keyword tools / labeled estimates), who actually ranks, competitor strengths and gaps, who AI answers cite, keyword → page map | `docs/seo/02-RESEARCH-REPORT.md` + `keyword-map.csv` |
+| 3. Improve | `/seo pipeline improve` | One approval, then implements the SEO work, verifies it, re-scores, and reports **before → after** with every change and your to-do list | `docs/seo/03-IMPROVEMENT-REPORT.md` |
+
+Just type `/seo pipeline` and it resumes at the next step. **Every skill in this repo is used**: each report ends with a "Skills used" table showing what ran, or why a skill was skipped (for example, local SEO for a business with no location, or a paid extension with no credentials).
 
 ## What this fork adds
 
 | Command | What it does | Why it matters |
 |---|---|---|
+| `/seo pipeline` | The 3-step Audit → Research → Improve flow above, using every sub-skill and extension. | One command from "no SEO" to "done, with proof of what improved". |
 | `/seo codebase` | Runs **inside your project**. Profiles the framework, rendering, routes and real dynamic page counts, scores the code, asks for approval, then **implements the fixes** with framework-native recipes (Next.js App/Pages, Astro, Nuxt, SvelteKit, Remix/React Router, Gatsby, WordPress, Hugo/Eleventy/Jekyll, SPAs) and verifies against real server HTML. | URL audits tell you what's wrong; this one changes the code. |
 | `/seo indexing` | Gets **hundreds to millions of pages indexed**: one index gate shared by page and sitemap, crawl cost (cached renders, no paid calls on bot hits, image quotas), sitemap chunking, internal-link discovery, staged rollout, Search Console / Bing / IndexNow submission, lifecycle of sold/removed pages, and a fix for every Search Console "not indexed" reason. | Sitemaps get pages *discovered*, not *indexed*. This covers the rest, honestly, including why the Google Indexing API is off-limits for normal pages. |
 | `/seo aeo` | **Answer Engine Optimization** across AI Overviews, AI Mode, ChatGPT, Claude, Perplexity and Copilot: eligibility per platform, answer-first structure, question coverage, citable evidence, trust, freshness, and measurement (Search Console generative AI report, Bing AI Performance, prompt panel). | Every recommendation is **evidence-graded** (A platform docs, B peer-reviewed, C industry study) and must fit Google's AI optimization guide. No hacks. |
@@ -47,11 +60,12 @@ powershell -ExecutionPolicy Bypass -File ultimate-seo-skill\install.ps1
 
 ## Get great results: how to use it
 
-1. **Working on your own site's code?** Open the project in Claude Code and run `/seo codebase`. Answer its questions about the business (what you sell, to whom, where, the main conversion). Review `docs/seo/ACTION-PLAN.md`, then tell it which items to implement.
-2. **Have thousands of generated pages** (listings, products, locations)? Run `/seo indexing plan`. Fix the gate, crawl cost and internal links **before** submitting sitemaps, then roll out best segments first.
-3. **Want AI answers to cite you?** Run `/seo aeo` on your top landing pages, then set up the Search Console and Bing AI reports so you measure instead of guess.
-4. **Auditing a live site or a client?** `/seo audit https://example.com` runs the full parallel audit.
-5. **Re-run monthly.** Every skill reads its previous output in `docs/seo/` and audits only what changed.
+1. **Easiest: run `/seo pipeline`** in your project (add your live URL if you have one) and follow the three steps.
+2. **Working on your own site's code?** Open the project in Claude Code and run `/seo codebase`. Answer its questions about the business (what you sell, to whom, where, the main conversion). Review `docs/seo/ACTION-PLAN.md`, then tell it which items to implement.
+3. **Have thousands of generated pages** (listings, products, locations)? Run `/seo indexing plan`. Fix the gate, crawl cost and internal links **before** submitting sitemaps, then roll out best segments first.
+4. **Want AI answers to cite you?** Run `/seo aeo` on your top landing pages, then set up the Search Console and Bing AI reports so you measure instead of guess.
+5. **Auditing a live site or a client?** `/seo audit https://example.com` runs the full parallel audit.
+6. **Re-run monthly.** Every skill reads its previous output in `docs/seo/` and audits only what changed.
 
 ## Principles
 

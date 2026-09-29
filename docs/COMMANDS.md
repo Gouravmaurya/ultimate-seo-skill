@@ -199,6 +199,28 @@ Agent readiness: how well AI agents that browse and act for people can read and 
 
 ---
 
+### `/seo pipeline [audit|research|improve|status] [url]`
+
+**Start here.** Three steps, one report each, pausing for review between steps. With no step given, it resumes at the first step that has no report yet.
+
+**Examples:**
+```
+/seo pipeline
+/seo pipeline audit https://example.com
+/seo pipeline research
+/seo pipeline improve
+/seo pipeline status
+```
+
+**Steps:**
+1. **Audit**: profiles the project and live site, scores every area, records baseline metrics → `docs/seo/01-AUDIT-REPORT.md`
+2. **Research**: keywords (Search Console, keyword tools, or labeled estimates), SERP competitors, content/quality gaps, AI answer snapshot, keyword→page map → `docs/seo/02-RESEARCH-REPORT.md` + `keyword-map.csv`
+3. **Improve**: one approval, then implements technical, on-page, content, AEO and indexing work; verifies; re-scores → `docs/seo/03-IMPROVEMENT-REPORT.md` with before→after scores, every change, owner to-do, and a measurement plan
+
+Every sub-skill and extension is either run or listed as skipped with a reason in each report's "Skills used" table.
+
+---
+
 ### `/seo codebase [path] [audit|fix|verify]`
 
 Repo-first SEO. Runs inside a project (no URL needed): analyzes the source code, scores it, asks for approval, then implements the fixes with the framework's own patterns.
@@ -826,6 +848,7 @@ Multi-page Lighthouse audit via Unlighthouse (extension, MIT, no API quota). **P
 | `/seo images <url>` | Image optimization |
 | `/seo geo <url>` | AI search optimization (GEO) |
 | `/seo agentic <url>` | Agent readiness (Lighthouse Agentic Browsing, AI agent access, WebMCP) |
+| `/seo pipeline [step]` | 3-step Audit → Research → Improve with reports (start here) |
 | `/seo codebase [path]` | Repo-first SEO: analyze the code, then implement fixes |
 | `/seo indexing [plan\|diagnose\|implement]` | Bulk indexing at scale, crawl cost, Search Console reasons |
 | `/seo aeo <url or path>` | Answer Engine Optimization (evidence-graded) |

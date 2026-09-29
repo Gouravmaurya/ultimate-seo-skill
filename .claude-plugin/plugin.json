@@ -1,7 +1,7 @@
 {
   "name": "ultimate-seo",
-  "version": "2.5.0",
-  "description": "Ultimate SEO for Claude Code, based on claude-seo 2.4.0. 29 sub-skills (25 core + 1 orchestrator + 1 framework + 2 extension mirrors) and 19 sub-agents: URL audits plus repo-first fixes (/seo codebase), bulk indexing for thousands of pages (/seo indexing), evidence-graded AEO (/seo aeo), technical SEO, schema, sitemaps, CWV, local, backlinks, GEO, ecommerce, hreflang, SXO, and Google APIs.",
+  "version": "2.6.0",
+  "description": "Ultimate SEO for Claude Code, based on claude-seo 2.4.0. 30 sub-skills (26 core + 1 orchestrator + 1 framework + 2 extension mirrors) and 19 sub-agents: a 3-step pipeline (/seo pipeline: audit, research, improve), URL audits, repo-first fixes (/seo codebase), bulk indexing for thousands of pages (/seo indexing), evidence-graded AEO (/seo aeo), technical SEO, schema, sitemaps, CWV, local, backlinks, GEO, ecommerce, hreflang, SXO, and Google APIs.",
   "author": {
     "name": "Gouravmaurya",
     "url": "https://github.com/Gouravmaurya"

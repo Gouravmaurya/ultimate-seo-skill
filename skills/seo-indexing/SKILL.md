@@ -14,7 +14,7 @@ argument-hint: "[plan|diagnose|implement] [url or path]"
 license: MIT
 metadata:
   author: Gouravmaurya
-  version: "2.5.0"
+  version: "2.6.0"
   category: seo
 ---
 
